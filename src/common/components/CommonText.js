@@ -43,7 +43,7 @@ export function ContentText({text, fontWeight, fontFamily}) {
     );
 }
 
-export function DescriptionText({text, fontWeight, fontFamily}) {
+export function DescriptionText({text, fontWeight}) {
     return (
         <CommonText text={text} fontWeight={fontWeight} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`} />
     );

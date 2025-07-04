@@ -2,13 +2,13 @@
 
 ## 구성 화면
 ### 인트로 화면
-<img src="screenshot/welcome_screen_shot.png" width="400" />
+<img alt="welcome_screen_shot.png" src="screenshot/welcome_screen_shot.png" width="400" />
 
 ### 메인 화면
-<img src="screenshot/main_screen_shot.png" width="400" />
+<img alt="main_screen_shot.png" src="screenshot/main_screen_shot.png" width="400" />
 
 ### 상세 화면
-<img src="screenshot/detail_screen_shot.png" width="400" />
+<img alt="detail_screen_shot.png" src="screenshot/detail_screen_shot.png" width="400" />
 
 ## 해당 프로젝트 평가
 - 해당 프로젝트는 React 재학습 용도로 사용하였음.

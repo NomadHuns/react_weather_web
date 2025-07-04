@@ -3,7 +3,7 @@ import {theme} from "../../common/theme";
 import {Column, MainWrapper, Row} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
 import {CommonText, ContentText} from "../../common/components/CommonText";
-import {CommonContainer, FullWidthContainer} from "../../common/components/CommonContainer";
+import {FullWidthContainer} from "../../common/components/CommonContainer";
 import {DefaultDivider} from "../../common/components/CommonDivider";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonIconButton} from "../../common/components/CommonButton";
