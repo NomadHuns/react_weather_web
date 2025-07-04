@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const StyledText = styled.div`
-    font-size: ${props => props.fontSize || '64px'};
+    font-size: ${props => props.fontSize || '24px'};
     font-family: 'Poppins', sans-serif;
-    letter-spacing: ${props => props.letterSpacing || '-0.37px'};
+    letter-spacing: ${props => props.letterSpacing || '0.47px'};
     line-height: ${props => props.lineHeight || 'normal'};
     font-weight: ${props => props.fontWeight || 'normal'};
     color: ${props => props.fontColor || '#FFFFFF'};
@@ -21,5 +21,11 @@ export function CommonText({text, fontSize, fontWeight, letterSpacing, fontColor
 export function TitleText({text, fontWeight, fontColor, lineHeight}) {
     return (
         <CommonText text={text} fontSize={'64px'} letterSpacing={'-0.37px'} fontWeight={fontWeight || 'bold'} fontColor={fontColor} lineHeight={lineHeight} />
+    );
+}
+
+export function ContentText({text, fontWeight}) {
+    return (
+        <CommonText text={text} fontWeight={fontWeight} fontSize={'20px'} />
     );
 }

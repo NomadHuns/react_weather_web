@@ -3,13 +3,13 @@ import {theme} from '../../common/theme';
 import {TitleText} from "../../common/components/CommonText";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonButton} from "../../common/components/CommonButton";
-import {CommonWrapper} from "../../common/components/CommonWrapper";
+import {MainWrapper} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
 
 export function WelcomePage() {
     return (
         <ThemeProvider theme={theme}>
-            <CommonWrapper>
+            <MainWrapper>
                 <CommonImage src={"/icons/cloudy.png"} />
                 <CommonSpacing size={'48px'} />
                 <TitleText text={"Weather"} />
@@ -21,7 +21,7 @@ export function WelcomePage() {
                         window.location.href = '/main';
                     }}
                 />
-            </CommonWrapper>
+            </MainWrapper>
         </ThemeProvider>
     );
 }
