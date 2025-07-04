@@ -3,7 +3,7 @@ import {theme} from "../../common/theme";
 import {Column, MainWrapper, Row} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
 import {CommonText, ContentText} from "../../common/components/CommonText";
-import {CommonContainer} from "../../common/components/CommonContainer";
+import {CommonContainer, FullWidthContainer} from "../../common/components/CommonContainer";
 import {DefaultDivider} from "../../common/components/CommonDivider";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonIconButton} from "../../common/components/CommonButton";
@@ -19,10 +19,10 @@ export function MainPage() {
                 <CommonText text={'Precipitations'} lineHeight={'1.0'} />
                 <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
                 <CommonImage src={"/images/house.png"} size={'340px'} />
-                <CommonContainer>
+                <FullWidthContainer height={'230px'}>
                     <Row mainAxisAlignment={'space-between'} pl="35px" pr="35px" pt="15px" pb="15px">
-                        <ContentText text={'Today'} fontWeight={'600'} />
-                        <ContentText text={'July, 21'} fontWeight={'600'} />
+                        <ContentText text={'Today'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
+                        <ContentText text={'July, 21'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
                     </Row>
                     <DefaultDivider />
                     <Row mainAxisAlignment={'space-between'} pl="35px" pr="35px" pt="20px">
@@ -55,11 +55,11 @@ export function MainPage() {
                             <ContentText text={'18.00'} fontWeight={'500'} />
                         </Column>
                     </Row>
-                </CommonContainer>
+                </FullWidthContainer>
                 <CommonSpacing size={'16px'} />
                 <Row mainAxisAlignment={'space-around'} width={'100%'} >
                     <CommonIconButton icon={MdLocationOn} onClick={() => {window.location.href = '/main';}} size="40px" />
-                    <CommonIconButton icon={GiHamburgerMenu} onClick={() => console.log('menu')} size="40px" />
+                    <CommonIconButton icon={GiHamburgerMenu} onClick={() => {window.location.href = '/detail';}} size="40px" />
                 </Row>
             </MainWrapper>
         </ThemeProvider>

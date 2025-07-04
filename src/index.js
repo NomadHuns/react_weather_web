@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {WelcomePage} from "./pages/welcome/WelcomePage";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {MainPage} from "./pages/main/MainPage";
+import {DetailPage} from "./pages/detail/DetailPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
           <Routes>
               <Route path="/" element={<WelcomePage />} />
               <Route path="/main" element={<MainPage />} />
+              <Route path="/detail" element={<DetailPage />} />
           </Routes>
       </Router>
   </React.StrictMode>
