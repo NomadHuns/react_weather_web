@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# 간단한 날씨 웹앱 만들기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 구성 화면
+### 인트로 화면
+<img src="screenshot/welcome_screen_shot.png" width="400" />
 
-## Available Scripts
+### 메인 화면
+<img src="screenshot/main_screen_shot.png" width="400" />
 
-In the project directory, you can run:
+### 상세 화면
+<img src="screenshot/detail_screen_shot.png" width="400" />
 
-### `npm start`
+## 해당 프로젝트 평가
+- 해당 프로젝트는 React 재학습 용도로 사용하였음.
+- Flutter 프로젝트를 전부터 오랜기간 진행해 왔기 때문에 Flutter의 화면 구현 방식을 많이 차용하려고 했음.
+- 컴포넌트를 만들고 진행을 하면서 좋았던 점은 후반부 갈수록 개발 속도가 굉장히 빨라짐.
+- 만들면서 가장 아쉬웠던 컴포넌트는 Row 컴포넌트가 가장 아쉬움.
+- 왜 아쉽냐면 width를 따로 지정해주어야 된다는 점이 불편했음. Flutter 방식이었다면 Row에 width는 없음.
+- Row에 OnClick 이벤트를 추가한 부분도 아쉬움. 차라리 새로운 컴포넌트를 생성하는게 나을 것.
+- Text 관련 컴포넌트들은 컴포넌트명 짓는게 어려웠음. 특히 폰트 두개가 혼재되어 이름 짓기가 더 어려웠음.
+- Padding 컴포넌트를 생성 하려다 말았는데 Row와 Column 컴포넌트가 생각한대로 정상 작동 했다면 추가해볼만 할듯.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 참고
+- 디자인: https://www.figma.com/community/file/1264522121969062318/weather-app
+- Poppins 폰트: https://fonts.google.com/specimen/Poppins?query=POPPINS
+- Open Sans 폰트: https://fonts.google.com/specimen/Open+Sans
