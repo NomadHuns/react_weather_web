@@ -14,8 +14,8 @@ const StyledButton = styled.button`
     font-family: "Open Sans", sans-serif;
 `;
 
-export function CommonButton({text}) {
+export function CommonButton({text, onClick}) {
     return (
-        <StyledButton>{text}</StyledButton>
+        <StyledButton onClick={onClick}>{text}</StyledButton>
     );
 }

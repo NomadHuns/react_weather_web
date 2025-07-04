@@ -15,7 +15,12 @@ export function WelcomePage() {
                 <TitleText text={"Weather"} />
                 <TitleText text={"ForeCasts"} fontWeight={'500'} fontColor={'#DDB130'} lineHeight={'1.0'}/>
                 <CommonSpacing size={'48px'} />
-                <CommonButton text={'Get Start'} />
+                <CommonButton
+                    text={'Get Start'}
+                    onClick={() => {
+                        window.location.href = '/main';
+                    }}
+                />
             </CommonWrapper>
         </ThemeProvider>
     );

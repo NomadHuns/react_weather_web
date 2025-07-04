@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {WelcomePage} from "./pages/welcome/WelcomePage";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {MainPage} from "./pages/main/MainPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +12,7 @@ root.render(
       <Router>
           <Routes>
               <Route path="/" element={<WelcomePage />} />
+              <Route path="/main" element={<MainPage />} />
           </Routes>
       </Router>
   </React.StrictMode>
