@@ -9,14 +9,16 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {getTodayWeatherByLocation} from "../../common/api/weather_api";
 import {WeatherImage} from "../../common/components/WeatherImage";
+import {useRecoilState} from "recoil";
+import {WeatherAtom} from "../../common/atoms/WeatherAtom";
+import {LocationAtom} from "../../common/atoms/LocationAtom";
 
 export function MainPage() {
-    const [currentWeather, setCurrentWeather] = useState({weathercode: 1, temperature: 20.5});
-
-    const [location, setLocation] = useState({lat: 37.5665, lng: 126.9780});
+    const [weather, setWeather] = useRecoilState(WeatherAtom);
+    const [location, setLocation] = useRecoilState(LocationAtom);
 
     // 현재 위치 가져오기
     useEffect(() => {
@@ -50,7 +52,10 @@ export function MainPage() {
             try {
                 const data = await getTodayWeatherByLocation(location.lat, location.lng);
                 console.log(data);
-                setCurrentWeather(data.current_weather);
+                setWeather((prev) => ({
+                    ...prev,
+                    currentWeather: data.current_weather
+                }));
             } catch (e) {
                 console.error("날씨 데이터 가져오기 실패:", e);
             }
@@ -63,8 +68,8 @@ export function MainPage() {
         <ThemeProvider theme={theme}>
             <MainWrapper>
                 <CommonSpacing size={'16px'} />
-                <WeatherImage size={'150px'} weatherCode={currentWeather.weathercode} />
-                <CommonText text={`${currentWeather.temperature}°C`} fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}/>
+                <WeatherImage size={'150px'} weatherCode={weather.currentWeather.weathercode} />
+                <CommonText text={`${weather.currentWeather.temperature}°C`} fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}/>
                 <CommonText text={'Precipitations'} lineHeight={'1.0'} />
                 <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
                 <CommonImage src={"/images/house.png"} size={'340px'} />
