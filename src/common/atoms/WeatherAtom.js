@@ -11,6 +11,7 @@ export const WeatherAtom = atom({
             sunrise: '- AM',
             sunset: '- PM',
             uv: '-',
+            airQuality: '',
         },
         nextFourHoursWeather: [
             {

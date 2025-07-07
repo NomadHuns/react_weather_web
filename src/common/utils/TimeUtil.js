@@ -18,3 +18,7 @@ dayjs.extend(customParseFormat);
 export function formatToAmPmTime(isoString, divider) {
     return dayjs(isoString).format(`h${divider}mm A`);
 }
+
+export function getCurrentHour24() {
+    return new Date().getHours(); // 0~23 반환
+}

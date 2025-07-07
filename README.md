@@ -18,6 +18,15 @@ GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
 - 위치 정보 접근 권한 부여시에도 위치 정보를 불러올 수 없음.
 - localhost 환경이라 정상적으로 동작하지 않는 것으로 추측됨.
 
+### open-meteo 날씨 코드
+<img alt="detail_screen_shot.png" src="screenshot/weather_code_screen_shot.png" />
+
+### 자외선 정보
+<img alt="detail_screen_shot.png" src="screenshot/uv_index_screen_shot.png" />
+
+### 공기질 정보
+<img alt="detail_screen_shot.png" src="screenshot/air_quality_index_screen_shot.png" />
+
 
 ## 해당 프로젝트 평가
 - 해당 프로젝트는 React 재학습 용도로 사용하였음.
@@ -35,3 +44,5 @@ GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
 - Open Sans 폰트: https://fonts.google.com/specimen/Open+Sans
 - 이미지: https://www.flaticon.com
 - 아이콘: https://react-icons.github.io/react-icons
+- 날씨 데이터: https://open-meteo.com/en/docs
+- 공기질 데이터: https://open-meteo.com/en/docs/air-quality-api

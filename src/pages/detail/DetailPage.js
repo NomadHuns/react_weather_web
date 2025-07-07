@@ -14,9 +14,14 @@ import {useRecoilState, useRecoilValue} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
-import {getMinAndMaxTemperatureToday, getUvIndex, getWeeklyWeather} from "../../common/utils/WeatherUtil";
-import {formatToAmPmTime} from "../../common/utils/TimeUtil";
+import {getAirQuality, getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
+import {
+    getAirQualityIndex,
+    getMinAndMaxTemperatureToday,
+    getUvIndex,
+    getWeeklyWeather
+} from "../../common/utils/WeatherUtil";
+import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil";
 
 export function DetailPage() {
     const [index, setIndex] = useState(0);
@@ -29,13 +34,13 @@ export function DetailPage() {
             try {
                 // 일주일 날씨 정보 불러오기
                 const data = await getWeeklyWeatherByLocation(location.lat, location.lng);
-                console.log(data.daily);
                 const weeklyWeather = getWeeklyWeather(data);
                 setWeather((prev) => ({
                     ...prev,
                     weeklyWeather: weeklyWeather
                 }));
                 const minMaxToday = getMinAndMaxTemperatureToday(data);
+                const airData = await getAirQuality(location.lat, location.lng);
                 setWeather((prev) => ({
                     ...prev,
                     currentWeather: {
@@ -44,9 +49,12 @@ export function DetailPage() {
                         maxTemperature: minMaxToday.maxTemperature,
                         sunrise: formatToAmPmTime(data.daily.sunrise[0], ':'),
                         sunset: formatToAmPmTime(data.daily.sunset[0], '.'),
-                        uv: data.daily.uv_index_max[0]
+                        uv: data.daily.uv_index_max[0],
+                        airQuality: airData.hourly.european_aqi[getCurrentHour24()],
                     },
                 }));
+
+
             } catch (e) {
                 console.error("날씨 데이터 가져오기 실패:", e);
             }
@@ -114,7 +122,7 @@ export function DetailPage() {
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'}>
-                            <SubjectText text={'3-Low Health Risk'} />
+                            <SubjectText text={`${weather.currentWeather.airQuality} - ${getAirQualityIndex(weather.currentWeather.airQuality)}`} fontsize={'24px'} />
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'} >

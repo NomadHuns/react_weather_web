@@ -31,9 +31,9 @@ export function TitleText({text, fontWeight, fontColor, lineHeight}) {
     );
 }
 
-export function SubjectText({text}) {
+export function SubjectText({text, fontsize = '28px'}) {
     return (
-        <CommonText text={text} fontWeight={'600'} fontSize={'28px'} fontFamily={`"Open Sans", sans-serif`} />
+        <CommonText text={text} fontWeight={'600'} fontSize={fontsize} fontFamily={`"Open Sans", sans-serif`} />
     );
 }
 
