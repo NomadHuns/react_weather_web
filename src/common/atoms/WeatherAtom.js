@@ -7,5 +7,27 @@ export const WeatherAtom = atom({
             weathercode: 1000,
             temperature: '-'
         },
+        nextFourHoursWeather: [
+            {
+                time: '-',
+                weathercode: 1000,
+                temp: '-'
+            },
+            {
+                time: '-',
+                weathercode: 1000,
+                temp: '-'
+            },
+            {
+                time: '-',
+                weathercode: 1000,
+                temp: '-'
+            },
+            {
+                time: '-',
+                weathercode: 1000,
+                temp: '-'
+            },
+        ]
     }
 });

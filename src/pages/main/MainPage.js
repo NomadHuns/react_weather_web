@@ -10,11 +10,12 @@ import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
 import {useEffect} from "react";
-import {getTodayWeatherByLocation} from "../../common/api/weather_api";
+import {getTodayWeatherByLocation, getWeatherByLocation} from "../../common/api/WeatherApi";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {useRecoilState} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
+import {getNextFourHoursWeather} from "../../common/utils/WeatherUtil";
 
 export function MainPage() {
     const [weather, setWeather] = useRecoilState(WeatherAtom);
@@ -48,20 +49,29 @@ export function MainPage() {
 
     // 위치가 바뀔 때마다 날씨 요청
     useEffect(() => {
-        async function fetchCurrentWeather() {
+        async function fetchTodayWeather() {
             try {
+                // 현재 시각 날씨 정보 가져오기
                 const data = await getTodayWeatherByLocation(location.lat, location.lng);
-                console.log(data);
                 setWeather((prev) => ({
                     ...prev,
                     currentWeather: data.current_weather
+                }));
+
+                // 현재 시각 이후 4시간까지 날씨 정보 가져오기
+                const fourHoursData = await getWeatherByLocation(location.lat, location.lng);
+                console.log(fourHoursData);
+                const fourHoursDataTempData = getNextFourHoursWeather(fourHoursData);
+                setWeather((prev) => ({
+                    ...prev,
+                    nextFourHoursWeather: fourHoursDataTempData
                 }));
             } catch (e) {
                 console.error("날씨 데이터 가져오기 실패:", e);
             }
         }
 
-        fetchCurrentWeather();
+        fetchTodayWeather();
     }, [location]);
 
     return (
@@ -80,34 +90,15 @@ export function MainPage() {
                     </Row>
                     <DefaultDivider />
                     <Row mainAxisAlignment={'space-between'} pl="35px" pr="35px" pt="20px">
-                        <Column crossAxisAlignment={'center'}>
-                            <ContentText text={'10°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'15.00'} fontWeight={'500'} />
-                        </Column>
-                        <Column crossAxisAlignment={'center'}>
-                            <ContentText text={'10°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'16.00'} fontWeight={'500'} />
-                        </Column>
-                        <Column crossAxisAlignment={'center'}>
-                            <ContentText text={'10°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'17.00'} fontWeight={'500'} />
-                        </Column>
-                        <Column crossAxisAlignment={'center'}>
-                            <ContentText text={'10°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'18.00'} fontWeight={'500'} />
-                        </Column>
+                        {weather.nextFourHoursWeather.map((item) => (
+                            <Column crossAxisAlignment={'center'}>
+                                <ContentText text={`${item.temp}°C`} fontWeight={'500'} />
+                                <CommonSpacing size={'8px'} />
+                                <WeatherImage size={'50px'} weatherCode={item.weathercode} />
+                                <CommonSpacing size={'8px'} />
+                                <ContentText text={item.time} fontWeight={'500'} />
+                            </Column>
+                        ))}
                     </Row>
                 </FullWidthContainer>
                 <CommonSpacing size={'16px'} />
