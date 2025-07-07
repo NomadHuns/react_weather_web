@@ -12,9 +12,9 @@ export async function getTodayWeatherByLocation(lat, lng) {
     }
 }
 
-export async function getWeatherByLocation() {
+export async function getWeatherByLocation(lat, lng) {
     try {
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m&timezone=Asia%2FSeoul');
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,weathercode&timezone=Asia%2FSeoul`);
         if (!response.ok) throw new Error('네트워크 에러');
 
         return await response.json(); // 또는 console.log(data)
