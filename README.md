@@ -33,4 +33,5 @@ GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
 - 디자인: https://www.figma.com/community/file/1264522121969062318/weather-app
 - Poppins 폰트: https://fonts.google.com/specimen/Poppins?query=POPPINS
 - Open Sans 폰트: https://fonts.google.com/specimen/Open+Sans
-- 아이콘: https://www.flaticon.com
+- 이미지: https://www.flaticon.com
+- 아이콘: https://react-icons.github.io/react-icons
