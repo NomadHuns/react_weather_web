@@ -5,7 +5,9 @@ export const WeatherAtom = atom({
     default: {
         currentWeather: {
             weathercode: 1000,
-            temperature: '-'
+            temperature: '-',
+            minTemperature: '-',
+            maxTemperature: '-',
         },
         nextFourHoursWeather: [
             {
@@ -28,6 +30,43 @@ export const WeatherAtom = atom({
                 weathercode: 1000,
                 temp: '-'
             },
+        ],
+        weeklyWeather: [
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            },
+            {
+                dayOfWeek: '-',
+                weathercode: 1000,
+                temp: '-',
+            }
         ]
     }
 });

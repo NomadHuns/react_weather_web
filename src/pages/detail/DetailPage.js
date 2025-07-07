@@ -6,65 +6,99 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {FaAngleLeft, FaAngleRight} from "react-icons/fa6";
 import {CommonIconButton} from "../../common/components/CommonButton";
 import {CommonContainer} from "../../common/components/CommonContainer";
-import {CommonImage} from "../../common/components/CommonImage";
 import {SlTarget} from "react-icons/sl";
 import {CommonDivider} from "../../common/components/CommonDivider";
 import {GiHamburgerMenu, GiSun} from "react-icons/gi";
+import {useEffect, useState} from "react";
+import {useRecoilState, useRecoilValue} from "recoil";
+import {WeatherAtom} from "../../common/atoms/WeatherAtom";
+import {WeatherImage} from "../../common/components/WeatherImage";
+import {LocationAtom} from "../../common/atoms/LocationAtom";
+import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
+import {getMinAndMaxTemperatureToday, getWeeklyWeather} from "../../common/utils/WeatherUtil";
 
 export function DetailPage() {
+    const [index, setIndex] = useState(0);
+    const [weather, setWeather] = useRecoilState(WeatherAtom);
+    const location = useRecoilValue(LocationAtom);
+
+    // 위치가 바뀔 때마다 날씨 요청
+    useEffect(() => {
+        async function fetchTodayWeather() {
+            try {
+                // 일주일 날씨 정보 불러오기
+                const data = await getWeeklyWeatherByLocation(location.lat, location.lng);
+                console.log(data.daily);
+                const weeklyWeather = getWeeklyWeather(data);
+                setWeather((prev) => ({
+                    ...prev,
+                    weeklyWeather: weeklyWeather
+                }));
+                const minMaxToday = getMinAndMaxTemperatureToday(data);
+                setWeather((prev) => ({
+                    ...prev,
+                    currentWeather: {
+                        ...prev.currentWeather,
+                        minTemperature: minMaxToday.minTemperature,
+                        maxTemperature: minMaxToday.maxTemperature,
+                    },
+                }));
+            } catch (e) {
+                console.error("날씨 데이터 가져오기 실패:", e);
+            }
+        }
+
+        fetchTodayWeather();
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             <MainWrapper>
                 <CommonSpacing size={'32px'} />
-                <CommonText text={'North America'} lineHeight={'1.0'} />
-                <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
+                <CommonText text={'Seoul, Korea'} lineHeight={'1.0'} />
+                <CommonText text={`Max: ${weather.currentWeather.maxTemperature}°\u00A0\u00A0\u00A0Min: ${weather.currentWeather.minTemperature}°`} />
                 <CommonSpacing size={'32px'} />
                 <Row width={'75%'} mainAxisAlignment={'start'}>
                     <CommonText text={'7-Days Forecasts'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'bold'}/>
                 </Row>
                 <CommonSpacing size={'16px'} />
                 <Row width={'95%'} mainAxisAlignment={'start'}>
-                    <CommonIconButton icon={FaAngleLeft} onClick={() => {console.log('left')}} size="40px" />
-                    <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
-                        <Column height={'100%'}>
-                            <ContentText text={'18°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'Mon'} fontWeight={'500'} />
-                        </Column>
-                    </CommonContainer>
-                    <CommonSpacing size={'8px'} />
-                    <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
-                        <Column height={'100%'}>
-                            <ContentText text={'19°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloud.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'Tue'} fontWeight={'500'} />
-                        </Column>
-                    </CommonContainer>
-                    <CommonSpacing size={'8px'} />
-                    <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
-                        <Column height={'100%'}>
-                            <ContentText text={'19°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy_rain.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'Wed'} fontWeight={'500'} />
-                        </Column>
-                    </CommonContainer>
-                    <CommonSpacing size={'8px'} />
-                    <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
-                        <Column height={'100%'}>
-                            <ContentText text={'20°C'} fontWeight={'500'} />
-                            <CommonSpacing size={'8px'} />
-                            <CommonImage src={"/icons/cloudy_rain.png"} size={'50px'} />
-                            <CommonSpacing size={'8px'} />
-                            <ContentText text={'Thu'} fontWeight={'500'} />
-                        </Column>
-                    </CommonContainer>
-                    <CommonIconButton icon={FaAngleRight} onClick={() => {console.log('right')}} size="40px" />
+                    <CommonIconButton
+                        icon={FaAngleLeft}
+                        size="40px"
+                        onClick={() => {
+                            if (index > 0) {
+                                setIndex(prev => prev-1);
+                            }
+                        }}
+                    />
+                    {weather.weeklyWeather.map((item, itemIndex) => {
+                        if (itemIndex >= index && itemIndex <= index+3 ) {
+                            return <>
+                                <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
+                                    <Column height={'100%'}>
+                                        <ContentText text={`${item.temp}°C`} fontWeight={'500'} />
+                                        <CommonSpacing size={'8px'} />
+                                        <WeatherImage size={'50px'} weatherCode={item.weathercode} />
+                                        <CommonSpacing size={'8px'} />
+                                        <ContentText text={item.dayOfWeek} fontWeight={'500'} />
+                                    </Column>
+                                </CommonContainer>
+                                <CommonSpacing size={'8px'} />
+                            </>
+                         } else {
+                            return <></>
+                        }
+                    })}
+                    <CommonIconButton
+                        icon={FaAngleRight}
+                        size="40px"
+                        onClick={() => {
+                            if (index < 3) {
+                                setIndex(prev => prev+1);
+                            }
+                        }}
+                    />
                 </Row>
                 <CommonSpacing size={'32px'} />
                 <CommonContainer width={'75%'} radius={'20px'} height={'160px'}>
