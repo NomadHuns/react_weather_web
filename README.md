@@ -13,7 +13,7 @@
 ## 이슈
 ### 위치 정보 불러올 수 없음
 ```text
-    GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
+GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
 ```
 - 위치 정보 접근 권한 부여시에도 위치 정보를 불러올 수 없음.
 - localhost 환경이라 정상적으로 동작하지 않는 것으로 추측됨.
