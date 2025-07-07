@@ -35,7 +35,7 @@ export async function getWeeklyWeatherByLocation(lat, lng) {
         endDate.setDate(endDate.getDate() + 6); // 오늘 포함 7일치
         const endDateStr = endDate.toISOString().split('T')[0];
 
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Asia%2FSeoul&start_date=${startDate}&end_date=${endDateStr}`);
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=Asia%2FSeoul&start_date=${startDate}&end_date=${endDateStr}`);
         if (!response.ok) throw new Error('네트워크 에러');
 
         return await response.json(); // 또는 console.log(data)
