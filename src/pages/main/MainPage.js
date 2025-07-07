@@ -55,12 +55,11 @@ export function MainPage() {
                 const data = await getTodayWeatherByLocation(location.lat, location.lng);
                 setWeather((prev) => ({
                     ...prev,
-                    currentWeather: data.current_weather
+                    currentWeather: data.current_weather,
                 }));
 
                 // 현재 시각 이후 4시간까지 날씨 정보 가져오기
                 const fourHoursData = await getWeatherByLocation(location.lat, location.lng);
-                console.log(fourHoursData);
                 const fourHoursDataTempData = getNextFourHoursWeather(fourHoursData);
                 setWeather((prev) => ({
                     ...prev,

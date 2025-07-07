@@ -16,6 +16,7 @@ import {WeatherImage} from "../../common/components/WeatherImage";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
 import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
 import {getMinAndMaxTemperatureToday, getWeeklyWeather} from "../../common/utils/WeatherUtil";
+import {formatToAmPmTime} from "../../common/utils/TimeUtil";
 
 export function DetailPage() {
     const [index, setIndex] = useState(0);
@@ -41,6 +42,8 @@ export function DetailPage() {
                         ...prev.currentWeather,
                         minTemperature: minMaxToday.minTemperature,
                         maxTemperature: minMaxToday.maxTemperature,
+                        sunrise: formatToAmPmTime(data.daily.sunrise[0], ':'),
+                        sunset: formatToAmPmTime(data.daily.sunset[0], '.'),
                     },
                 }));
             } catch (e) {
@@ -131,11 +134,11 @@ export function DetailPage() {
                             <DescriptionText text={'SUNRISE'} />
                         </Row>
                         <Row width={'100%'}>
-                            <SubjectText text={'5:28 AM'} />
+                            <SubjectText text={`${weather.currentWeather.sunrise}`} />
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row width={'100%'}>
-                            <DescriptionText text={'Sunset: 7.25 PM'} />
+                            <DescriptionText text={`Sunset: ${weather.currentWeather.sunset}`} />
                         </Row>
                     </CommonContainer>
                     <CommonSpacing size={'6%'} />
