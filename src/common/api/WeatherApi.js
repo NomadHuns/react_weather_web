@@ -44,3 +44,17 @@ export async function getWeeklyWeatherByLocation(lat, lng) {
         throw error; // 호출부에서 처리하도록 재전파
     }
 }
+
+// https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&hourly=pm10,pm2_5,european_aqi&timezone=Asia%2FSeoul
+export async function getAirQuality(lat, lng) {
+    try {
+        const response = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}&hourly=pm10,pm2_5,european_aqi&timezone=Asia%2FSeoul&forecast_days=1`);
+        // const response = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&hourly=pm10,pm2_5,european_aqi&timezone=Asia%2FSeoul`);
+        if (!response.ok) throw new Error('네트워크 에러');
+
+        return await response.json(); // 또는 console.log(data)
+    } catch (error) {
+        console.error('API 요청 에러:', error);
+        throw error; // 호출부에서 처리하도록 재전파
+    }
+}

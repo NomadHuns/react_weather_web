@@ -63,3 +63,20 @@ export function getUvIndex(uv) {
             return '-';
     }
 }
+
+export function getAirQualityIndex(airQuality) {
+    if (typeof airQuality === "string") return airQuality;
+    if (airQuality === '') return airQuality;
+    if (airQuality >= 0 && airQuality < 20) {
+        return 'Good';
+    } else if (airQuality >= 20 && airQuality < 40) {
+        return 'Fair';
+    } else if (airQuality >= 40 && airQuality < 60) {
+        return 'Moderate';
+    } else if (airQuality >= 60 && airQuality < 80) {
+        return 'Poor';
+    } else if (airQuality >= 80 ) {
+        return 'Very Poor';
+    }
+    return '-';
+}
