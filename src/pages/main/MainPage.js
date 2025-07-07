@@ -9,13 +9,62 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
+import {useEffect, useState} from "react";
+import {getTodayWeatherByLocation} from "../../common/api/weather_api";
+import {WeatherImage} from "../../common/components/WeatherImage";
 
 export function MainPage() {
+    const [currentWeather, setCurrentWeather] = useState({weathercode: 1, temperature: 20.5});
+
+    const [location, setLocation] = useState({lat: 37.5665, lng: 126.9780});
+
+    // 현재 위치 가져오기
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    setLocation({
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude
+                    });
+                },
+                (error) => {
+                    if (error.code === error.POSITION_UNAVAILABLE) {
+                        console.warn("위치 정보를 가져올 수 없습니다. 네트워크 환경을 확인하세요.:", error);
+                    } else {
+                        console.error("위치 오류:", error);
+                    }
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 3000,
+                    maximumAge: 0
+                }
+            );
+        }
+    }, []);
+
+    // 위치가 바뀔 때마다 날씨 요청
+    useEffect(() => {
+        async function fetchCurrentWeather() {
+            try {
+                const data = await getTodayWeatherByLocation(location.lat, location.lng);
+                console.log(data);
+                setCurrentWeather(data.current_weather);
+            } catch (e) {
+                console.error("날씨 데이터 가져오기 실패:", e);
+            }
+        }
+
+        fetchCurrentWeather();
+    }, [location]);
+
     return (
         <ThemeProvider theme={theme}>
             <MainWrapper>
-                <CommonImage src={"/icons/cloudy.png"} size={'150px'} />
-                <CommonText text={'19°'} fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}/>
+                <CommonSpacing size={'16px'} />
+                <WeatherImage size={'150px'} weatherCode={currentWeather.weathercode} />
+                <CommonText text={`${currentWeather.temperature}°C`} fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}/>
                 <CommonText text={'Precipitations'} lineHeight={'1.0'} />
                 <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
                 <CommonImage src={"/images/house.png"} size={'340px'} />
