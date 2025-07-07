@@ -16,3 +16,31 @@ export function getNextFourHoursWeather(data) {
 
     return merged;
 }
+
+export function getWeeklyWeather(data) {
+    const temps = data.daily.temperature_2m_max;
+    const times = data.daily.time;
+
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    return data.daily.weathercode.map((code, idx) => ({
+        dayOfWeek: days[dayjs(times[idx]).day()],
+        weathercode: code,
+        temp: Math.round(temps[idx])
+    }));
+}
+
+export function getMinAndMaxTemperatureToday(data) {
+    if (
+        !data?.daily?.temperature_2m_max?.length ||
+        !data?.daily?.temperature_2m_min?.length
+    ) {
+        console.warn("온도 데이터가 부족합니다.");
+        return { minTemperature: null, maxTemperature: null };
+    }
+
+    return {
+        minTemperature: data.daily.temperature_2m_min[0],
+        maxTemperature: data.daily.temperature_2m_max[0],
+    };
+}
