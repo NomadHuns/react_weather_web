@@ -9,7 +9,8 @@ export const WeatherAtom = atom({
             minTemperature: '-',
             maxTemperature: '-',
             sunrise: '- AM',
-            sunset: '- PM'
+            sunset: '- PM',
+            uv: '-',
         },
         nextFourHoursWeather: [
             {

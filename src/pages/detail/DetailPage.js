@@ -15,7 +15,7 @@ import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
 import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
-import {getMinAndMaxTemperatureToday, getWeeklyWeather} from "../../common/utils/WeatherUtil";
+import {getMinAndMaxTemperatureToday, getUvIndex, getWeeklyWeather} from "../../common/utils/WeatherUtil";
 import {formatToAmPmTime} from "../../common/utils/TimeUtil";
 
 export function DetailPage() {
@@ -44,6 +44,7 @@ export function DetailPage() {
                         maxTemperature: minMaxToday.maxTemperature,
                         sunrise: formatToAmPmTime(data.daily.sunrise[0], ':'),
                         sunset: formatToAmPmTime(data.daily.sunset[0], '.'),
+                        uv: data.daily.uv_index_max[0]
                     },
                 }));
             } catch (e) {
@@ -148,8 +149,9 @@ export function DetailPage() {
                             <CommonText text={'UV INDEX'} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`} />
                         </Row>
                         <Column>
-                            <SubjectText text={'4'} />
-                            <ContentText text={'Modarate'} />
+                            <SubjectText text={weather.currentWeather.uv} />
+                            <CommonSpacing size={'4px'} />
+                            <ContentText text={getUvIndex(weather.currentWeather.uv)} />
                         </Column>
                     </CommonContainer>
                 </Row>
