@@ -14,7 +14,7 @@ import {useRecoilState, useRecoilValue} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getAirQuality, getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
+import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
 import {
     getAirQualityIndex,
     getMinAndMaxTemperatureToday,
@@ -22,6 +22,7 @@ import {
     getWeeklyWeather
 } from "../../common/utils/WeatherUtil";
 import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil";
+import {getAirQuality} from "../../common/api/AirQualityApi";
 
 export function DetailPage() {
     const [index, setIndex] = useState(0);
