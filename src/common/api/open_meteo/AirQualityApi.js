@@ -1,4 +1,4 @@
-import {baseGetAPI} from "./BaseAPI";
+import {baseGetAPI} from "../BaseAPI";
 
 async function baseAirQualityAPI(params) {
     return await baseGetAPI('https', 'air-quality-api.open-meteo.com', '/v1/air-quality', params);
@@ -13,6 +13,5 @@ export async function getAirQuality(lat, lng) {
         forecast_days: 1
     };
 
-    // const queryString = `latitude=${lat}&longitude=${lng}&hourly=pm10,pm2_5,european_aqi&timezone=Asia%2FSeoul&forecast_days=1`;
     return await baseAirQualityAPI(params);
 }

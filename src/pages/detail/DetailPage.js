@@ -14,7 +14,7 @@ import {useRecoilState, useRecoilValue} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getWeeklyWeatherByLocation} from "../../common/api/WeatherApi";
+import {getWeeklyWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
 import {
     getAirQualityIndex,
     getMinAndMaxTemperatureToday,
@@ -22,14 +22,15 @@ import {
     getWeeklyWeather
 } from "../../common/utils/WeatherUtil";
 import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil";
-import {getAirQuality} from "../../common/api/AirQualityApi";
+import {getAirQuality} from "../../common/api/open_meteo/AirQualityApi";
+import {getCountryAndCity} from "../../common/api/open_street_map/StreetMapApi";
 
 export function DetailPage() {
     const [index, setIndex] = useState(0);
     const [weather, setWeather] = useRecoilState(WeatherAtom);
     const location = useRecoilValue(LocationAtom);
+    const [city, setCity] = useState('Busan, South Korea');
 
-    // 위치가 바뀔 때마다 날씨 요청
     useEffect(() => {
         async function fetchTodayWeather() {
             try {
@@ -55,20 +56,35 @@ export function DetailPage() {
                     },
                 }));
 
-
+                const result = await getCountryAndCity(location.lat, location.lng);
+                console.log(result);
             } catch (e) {
                 console.error("날씨 데이터 가져오기 실패:", e);
             }
         }
 
+        async function fetchCity() {
+            try {
+                // 일주일 날씨 정보 불러오기
+                const data = await getCountryAndCity(location.lat, location.lng);
+                console.log(data);
+
+                setCity(`${data.address.city}, ${data.address.country}`);
+
+            } catch (e) {
+                console.error("위치 데이터 가져오기 실패:", e);
+            }
+        }
+
         fetchTodayWeather();
+        fetchCity();
     }, []);
 
     return (
         <ThemeProvider theme={theme}>
             <MainWrapper>
                 <CommonSpacing size={'32px'} />
-                <CommonText lineHeight={'1.0'}>Seoul, Korea</CommonText>
+                <CommonText lineHeight={'1.0'}>{city}</CommonText>
                 <CommonText>Max: {weather.currentWeather.maxTemperature}° Min: {weather.currentWeather.minTemperature}°</CommonText>
                 <CommonSpacing size={'32px'} />
                 <Row width={'75%'} mainAxisAlignment={'start'}>

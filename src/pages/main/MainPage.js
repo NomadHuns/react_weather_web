@@ -10,7 +10,7 @@ import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
 import {useEffect} from "react";
-import {getTodayWeatherByLocation, getWeatherByLocation} from "../../common/api/WeatherApi";
+import {getTodayWeatherByLocation, getWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {useRecoilState} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
