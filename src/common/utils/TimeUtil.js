@@ -22,3 +22,20 @@ export function formatToAmPmTime(isoString, divider) {
 export function getCurrentHour24() {
     return new Date().getHours(); // 0~23 반환
 }
+
+export function getFormattedToday() {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    // 오늘 날짜 객체 생성
+    const today = new Date();
+
+    // 월(Month)과 일(Day) 정보 가져오기
+    // getMonth()는 0(1월)부터 11(12월)까지의 숫자를 반환하므로 배열의 인덱스로 사용합니다.
+    const month = monthNames[today.getMonth()];
+    const day = today.getDate(); // 1부터 31까지의 숫자를 반환
+
+    // 원하는 형식으로 출력
+    return `${month}, ${day}`;
+}

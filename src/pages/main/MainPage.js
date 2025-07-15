@@ -16,6 +16,7 @@ import {useRecoilState} from "recoil";
 import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
 import {getNextFourHoursWeather} from "../../common/utils/WeatherUtil";
+import {getFormattedToday} from "../../common/utils/TimeUtil";
 
 export function MainPage() {
     const [weather, setWeather] = useRecoilState(WeatherAtom);
@@ -85,7 +86,7 @@ export function MainPage() {
                 <FullWidthContainer height={'230px'}>
                     <Row mainAxisAlignment={'space-between'} px="35px" py="15px">
                         <ContentText text={'Today'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
-                        <ContentText text={'July, 21'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
+                        <ContentText text={getFormattedToday()} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
                     </Row>
                     <DefaultDivider />
                     <Row mainAxisAlignment={'space-between'} pt="20px">
