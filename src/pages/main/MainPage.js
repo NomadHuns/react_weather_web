@@ -9,73 +9,13 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
-import {useEffect} from "react";
-import {getTodayWeatherByLocation, getWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
 import {WeatherImage} from "../../common/components/WeatherImage";
-import {useRecoilState} from "recoil";
-import {WeatherAtom} from "../../common/atoms/WeatherAtom";
-import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getNextFourHoursWeather} from "../../common/utils/WeatherUtil";
 import {getFormattedToday} from "../../common/utils/TimeUtil";
-import {useNavigate} from "react-router-dom";
+import {useMainPage} from "./useMainPage";
 
 export function MainPage() {
-    const navigate = useNavigate();
-
-    const [weather, setWeather] = useRecoilState(WeatherAtom);
-    const [location, setLocation] = useRecoilState(LocationAtom);
-
-    // 현재 위치 가져오기
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    setLocation({
-                        lat: pos.coords.latitude,
-                        lng: pos.coords.longitude
-                    });
-                },
-                (error) => {
-                    if (error.code === error.POSITION_UNAVAILABLE) {
-                        console.warn("위치 정보를 가져올 수 없습니다. 네트워크 환경을 확인하세요.:", error);
-                    } else {
-                        console.error("위치 오류:", error);
-                    }
-                },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 3000,
-                    maximumAge: 0
-                }
-            );
-        }
-    }, []);
-
-    // 위치가 바뀔 때마다 날씨 요청
-    useEffect(() => {
-        async function fetchTodayWeather() {
-            try {
-                // 현재 시각 날씨 정보 가져오기
-                const data = await getTodayWeatherByLocation(location.lat, location.lng);
-                setWeather((prev) => ({
-                    ...prev,
-                    currentWeather: data.current_weather,
-                }));
-
-                // 현재 시각 이후 4시간까지 날씨 정보 가져오기
-                const fourHoursData = await getWeatherByLocation(location.lat, location.lng);
-                const fourHoursDataTempData = getNextFourHoursWeather(fourHoursData);
-                setWeather((prev) => ({
-                    ...prev,
-                    nextFourHoursWeather: fourHoursDataTempData
-                }));
-            } catch (e) {
-                console.error("날씨 데이터 가져오기 실패:", e);
-            }
-        }
-
-        fetchTodayWeather();
-    }, [location]);
+    // 커스텀 훅을 호출하여 로직의 결과물만 받아서 사용
+    const { weather, navigate } = useMainPage();
 
     return (
         <ThemeProvider theme={theme}>

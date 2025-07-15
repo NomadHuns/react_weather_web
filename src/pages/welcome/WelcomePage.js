@@ -5,10 +5,10 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonButton} from "../../common/components/CommonButton";
 import {MainWrapper} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
-import {useNavigate} from "react-router-dom";
+import {useWelcomePage} from "./useWelcomePage";
 
 export function WelcomePage() {
-    const navigate = useNavigate();
+    const { navigate } = useWelcomePage();
 
     return (
         <ThemeProvider theme={theme}>

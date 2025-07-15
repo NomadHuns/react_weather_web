@@ -9,79 +9,12 @@ import {CommonContainer} from "../../common/components/CommonContainer";
 import {SlTarget} from "react-icons/sl";
 import {CommonDivider} from "../../common/components/CommonDivider";
 import {GiHamburgerMenu, GiSun} from "react-icons/gi";
-import {useEffect, useState} from "react";
-import {useRecoilState, useRecoilValue} from "recoil";
-import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {WeatherImage} from "../../common/components/WeatherImage";
-import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getWeeklyWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
-import {
-    getAirQualityIndex,
-    getMinAndMaxTemperatureToday,
-    getUvIndex,
-    getWeeklyWeather
-} from "../../common/utils/WeatherUtil";
-import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil";
-import {getAirQuality} from "../../common/api/open_meteo/AirQualityApi";
-import {getCountryAndCity} from "../../common/api/open_street_map/StreetMapApi";
-import {useNavigate} from "react-router-dom";
+import {getAirQualityIndex, getUvIndex} from "../../common/utils/WeatherUtil";
+import {useDetailPage} from "./useDetailPage";
 
 export function DetailPage() {
-    const navigate = useNavigate();
-
-    const [index, setIndex] = useState(0);
-    const [weather, setWeather] = useRecoilState(WeatherAtom);
-    const location = useRecoilValue(LocationAtom);
-    const [city, setCity] = useState('Busan, South Korea');
-
-    useEffect(() => {
-        async function fetchTodayWeather() {
-            try {
-                // 일주일 날씨 정보 불러오기
-                const data = await getWeeklyWeatherByLocation(location.lat, location.lng);
-                const weeklyWeather = getWeeklyWeather(data);
-                setWeather((prev) => ({
-                    ...prev,
-                    weeklyWeather: weeklyWeather
-                }));
-                const minMaxToday = getMinAndMaxTemperatureToday(data);
-                const airData = await getAirQuality(location.lat, location.lng);
-                setWeather((prev) => ({
-                    ...prev,
-                    currentWeather: {
-                        ...prev.currentWeather,
-                        minTemperature: minMaxToday.minTemperature,
-                        maxTemperature: minMaxToday.maxTemperature,
-                        sunrise: formatToAmPmTime(data.daily.sunrise[0], ':'),
-                        sunset: formatToAmPmTime(data.daily.sunset[0], '.'),
-                        uv: data.daily.uv_index_max[0],
-                        airQuality: airData.hourly.european_aqi[getCurrentHour24()],
-                    },
-                }));
-
-                const result = await getCountryAndCity(location.lat, location.lng);
-                console.log(result);
-            } catch (e) {
-                console.error("날씨 데이터 가져오기 실패:", e);
-            }
-        }
-
-        async function fetchCity() {
-            try {
-                // 일주일 날씨 정보 불러오기
-                const data = await getCountryAndCity(location.lat, location.lng);
-                console.log(data);
-
-                setCity(`${data.address.city}, ${data.address.country}`);
-
-            } catch (e) {
-                console.error("위치 데이터 가져오기 실패:", e);
-            }
-        }
-
-        fetchTodayWeather();
-        fetchCity();
-    }, []);
+    const { weather, city, index, handlePrev, handleNext, navigate } = useDetailPage();
 
     return (
         <ThemeProvider theme={theme}>
@@ -95,42 +28,19 @@ export function DetailPage() {
                 </Row>
                 <CommonSpacing size={'16px'} />
                 <Row width={'95%'} mainAxisAlignment={'start'}>
-                    <CommonIconButton
-                        icon={FaAngleLeft}
-                        size="40px"
-                        onClick={() => {
-                            if (index > 0) {
-                                setIndex(prev => prev-1);
-                            }
-                        }}
-                    />
-                    {weather.weeklyWeather.map((item, itemIndex) => {
-                        if (itemIndex >= index && itemIndex <= index+3 ) {
-                            return <>
-                                <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
-                                    <Column height={'100%'}>
-                                        <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
-                                        <CommonSpacing size={'8px'} />
-                                        <WeatherImage size={'50px'} weatherCode={item.weathercode} />
-                                        <CommonSpacing size={'8px'} />
-                                        <ContentText fontWeight={'500'}>{item.dayOfWeek}</ContentText>
-                                    </Column>
-                                </CommonContainer>
+                    <CommonIconButton icon={FaAngleLeft} size="40px" onClick={handlePrev} />
+                    {weather.weeklyWeather.slice(index, index + 4).map((item, itemIndex) => (
+                        <CommonContainer width={'20vw'} radius={'50px'} height={'172px'} mr={'8px'}>
+                            <Column height={'100%'}>
+                                <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
                                 <CommonSpacing size={'8px'} />
-                            </>
-                         } else {
-                            return <></>
-                        }
-                    })}
-                    <CommonIconButton
-                        icon={FaAngleRight}
-                        size="40px"
-                        onClick={() => {
-                            if (index < 3) {
-                                setIndex(prev => prev+1);
-                            }
-                        }}
-                    />
+                                <WeatherImage size={'50px'} weatherCode={item.weathercode} />
+                                <CommonSpacing size={'8px'} />
+                                <ContentText fontWeight={'500'}>{item.dayOfWeek}</ContentText>
+                            </Column>
+                        </CommonContainer>
+                    ))}
+                    <CommonIconButton icon={FaAngleRight} size="40px" onClick={handleNext} />
                 </Row>
                 <CommonSpacing size={'32px'} />
                 <CommonContainer width={'75%'} radius={'20px'} height={'160px'}>

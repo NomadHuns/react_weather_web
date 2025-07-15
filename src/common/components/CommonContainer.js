@@ -9,12 +9,28 @@ const Container = styled.div`
     width: ${props => props.width || 'auto'};
     height: ${props => props.height || 'auto'};
     ${props => props.borderColor && `border: 1px solid ${props.borderColor};`}
+    
+    ${props => props.p && `padding: ${props.p};`}
+    ${props => props.py && `padding-top: ${props.py}; padding-bottom: ${props.py};`}
+    ${props => props.px && `padding-left: ${props.px}; padding-right: ${props.px};`}
+    ${props => props.pt && `padding-top: ${props.pt};`}
+    ${props => props.pr && `padding-right: ${props.pr};`}
+    ${props => props.pb && `padding-bottom: ${props.pb};`}
+    ${props => props.pl && `padding-left: ${props.pl};`}
+    
+    ${props => props.m && `margin: ${props.m};`}
+    ${props => props.my && `margin-top: ${props.my}; margin-bottom: ${props.my};`}
+    ${props => props.mx && `margin-left: ${props.mx}; margin-right: ${props.mx};`}
+    ${props => props.mt && `margin-top: ${props.mt};`}
+    ${props => props.mr && `margin-right: ${props.mr};`}
+    ${props => props.mb && `margin-bottom: ${props.mb};`}
+    ${props => props.ml && `margin-left: ${props.ml};`}
 `;
 
-export function CommonContainer({children, width, height, radius, borderColor}) {
-    return <Container width={width} height={height} radius={radius} borderColor={borderColor}>{children}</Container>
+export function CommonContainer({children, width, height, radius, borderColor, ...rest}) {
+    return <Container width={width} height={height} radius={radius} borderColor={borderColor} {...rest}>{children}</Container>
 }
 
-export function FullWidthContainer({children, height, radius, borderColor}) {
-    return <Container width={'100vw'} height={height} radius={radius} borderColor={borderColor}>{children}</Container>
+export function FullWidthContainer({children, height, radius, borderColor, ...rest}) {
+    return <Container width={'100vw'} height={height} radius={radius} borderColor={borderColor} {...rest}>{children}</Container>
 }
