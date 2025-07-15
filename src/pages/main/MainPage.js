@@ -17,8 +17,11 @@ import {WeatherAtom} from "../../common/atoms/WeatherAtom";
 import {LocationAtom} from "../../common/atoms/LocationAtom";
 import {getNextFourHoursWeather} from "../../common/utils/WeatherUtil";
 import {getFormattedToday} from "../../common/utils/TimeUtil";
+import {useNavigate} from "react-router-dom";
 
 export function MainPage() {
+    const navigate = useNavigate();
+
     const [weather, setWeather] = useRecoilState(WeatherAtom);
     const [location, setLocation] = useRecoilState(LocationAtom);
 
@@ -103,8 +106,8 @@ export function MainPage() {
                 </FullWidthContainer>
                 <CommonSpacing size={'16px'} />
                 <Row mainAxisAlignment={'space-around'} width={'100%'} >
-                    <CommonIconButton icon={MdLocationOn} onClick={() => {window.location.href = '/main';}} size="40px" />
-                    <CommonIconButton icon={GiHamburgerMenu} onClick={() => {window.location.href = '/detail';}} size="40px" />
+                    <CommonIconButton icon={MdLocationOn} onClick={() => navigate('/main')} size="40px"/>
+                    <CommonIconButton icon={GiHamburgerMenu} onClick={() => navigate('/detail')} size="40px"/>
                 </Row>
             </MainWrapper>
         </ThemeProvider>

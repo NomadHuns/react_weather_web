@@ -24,8 +24,11 @@ import {
 import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil";
 import {getAirQuality} from "../../common/api/open_meteo/AirQualityApi";
 import {getCountryAndCity} from "../../common/api/open_street_map/StreetMapApi";
+import {useNavigate} from "react-router-dom";
 
 export function DetailPage() {
+    const navigate = useNavigate();
+
     const [index, setIndex] = useState(0);
     const [weather, setWeather] = useRecoilState(WeatherAtom);
     const location = useRecoilValue(LocationAtom);
@@ -181,7 +184,7 @@ export function DetailPage() {
                     </CommonContainer>
                 </Row>
                 <CommonSpacing size={'32px'} />
-                <CommonIconButton icon={GiHamburgerMenu} onClick={() => {window.location.href = '/main';}} size="60px" />
+                <CommonIconButton icon={GiHamburgerMenu} onClick={() => navigate('/main')} size="60px"/>
             </MainWrapper>
         </ThemeProvider>
     );
