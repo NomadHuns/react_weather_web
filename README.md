@@ -37,6 +37,7 @@ GeolocationPositionError {code: 2, message: 'Position update is unavailable'}
 - Row에 OnClick 이벤트를 추가한 부분도 아쉬움. 차라리 새로운 컴포넌트를 생성하는게 나을 것.
 - Text 관련 컴포넌트들은 컴포넌트명 짓는게 어려웠음. 특히 폰트 두개가 혼재되어 이름 짓기가 더 어려웠음.
 - Padding 컴포넌트를 생성 하려다 말았는데 Row와 Column 컴포넌트가 생각한대로 정상 작동 했다면 추가해볼만 할듯.
+- open-meteo에서 제공하는 API의 질이 생각보다 괜찮아서 놀랬음.
 
 ## 참고
 - 디자인: https://www.figma.com/community/file/1264522121969062318/weather-app

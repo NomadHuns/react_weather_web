@@ -138,21 +138,21 @@ export function DetailPage() {
                 <CommonSpacing size={'32px'} />
                 <Row width={'75%'}>
                     <CommonContainer width={'47%'} radius={'20px'} height={'140px'} borderColor="#F7CBFD" >
-                        <Row width={'100%'} pt={'10px'}>
+                        <Row pt={'10px'}>
                             <GiSun size={40} color={'#FFFFFF'} />
                             <DescriptionText text={'SUNRISE'} />
                         </Row>
-                        <Row width={'100%'}>
+                        <Row>
                             <SubjectText text={`${weather.currentWeather.sunrise}`} />
                         </Row>
                         <CommonSpacing size={'8px'} />
-                        <Row width={'100%'}>
+                        <Row>
                             <DescriptionText text={`Sunset: ${weather.currentWeather.sunset}`} />
                         </Row>
                     </CommonContainer>
                     <CommonSpacing size={'6%'} />
                     <CommonContainer width={'47%'} radius={'20px'} height={'140px'} borderColor="#F7CBFD" >
-                        <Row width={'100%'} pt={'10px'}>
+                        <Row pt={'10px'}>
                             <GiSun size={40} color={'#FFFFFF'} />
                             <CommonText text={'UV INDEX'} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`} />
                         </Row>

@@ -83,12 +83,12 @@ export function MainPage() {
                 <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
                 <CommonImage src={"/images/house.png"} size={'340px'} />
                 <FullWidthContainer height={'230px'}>
-                    <Row mainAxisAlignment={'space-between'} pl="35px" pr="35px" pt="15px" pb="15px">
+                    <Row mainAxisAlignment={'space-between'} px="35px" py="15px">
                         <ContentText text={'Today'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
                         <ContentText text={'July, 21'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
                     </Row>
                     <DefaultDivider />
-                    <Row mainAxisAlignment={'space-between'} pl="35px" pr="35px" pt="20px">
+                    <Row mainAxisAlignment={'space-between'} pt="20px">
                         {weather.nextFourHoursWeather.map((item) => (
                             <Column crossAxisAlignment={'center'}>
                                 <ContentText text={`${item.temp}°C`} fontWeight={'500'} />
