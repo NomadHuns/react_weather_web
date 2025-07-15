@@ -79,24 +79,24 @@ export function MainPage() {
             <MainWrapper>
                 <CommonSpacing size={'16px'} />
                 <WeatherImage size={'150px'} weatherCode={weather.currentWeather.weathercode} />
-                <CommonText text={`${weather.currentWeather.temperature}°C`} fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}/>
-                <CommonText text={'Precipitations'} lineHeight={'1.0'} />
-                <CommonText text={'Max: 24°\u00A0\u00A0\u00A0Min: 18°'} />
+                <CommonText fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}>{weather.currentWeather.temperature}°C</CommonText>
+                <CommonText lineHeight={'1.0'}>Precipitations</CommonText>
+                <CommonText text={''}>Max: 24° Min: 18°</CommonText>
                 <CommonImage src={"/images/house.png"} size={'340px'} />
                 <FullWidthContainer height={'230px'}>
                     <Row mainAxisAlignment={'space-between'} px="35px" py="15px">
-                        <ContentText text={'Today'} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
-                        <ContentText text={getFormattedToday()} fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}/>
+                        <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>Today</ContentText>
+                        <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>{getFormattedToday()}</ContentText>
                     </Row>
                     <DefaultDivider />
                     <Row mainAxisAlignment={'space-between'} pt="20px">
                         {weather.nextFourHoursWeather.map((item) => (
                             <Column crossAxisAlignment={'center'}>
-                                <ContentText text={`${item.temp}°C`} fontWeight={'500'} />
+                                <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
                                 <CommonSpacing size={'8px'} />
                                 <WeatherImage size={'50px'} weatherCode={item.weathercode} />
                                 <CommonSpacing size={'8px'} />
-                                <ContentText text={item.time} fontWeight={'500'} />
+                                <ContentText text={item.time} fontWeight={'500'}>{item.time}</ContentText>
                             </Column>
                         ))}
                     </Row>

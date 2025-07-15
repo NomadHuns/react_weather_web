@@ -68,11 +68,11 @@ export function DetailPage() {
         <ThemeProvider theme={theme}>
             <MainWrapper>
                 <CommonSpacing size={'32px'} />
-                <CommonText text={'Seoul, Korea'} lineHeight={'1.0'} />
-                <CommonText text={`Max: ${weather.currentWeather.maxTemperature}°\u00A0\u00A0\u00A0Min: ${weather.currentWeather.minTemperature}°`} />
+                <CommonText lineHeight={'1.0'}>Seoul, Korea</CommonText>
+                <CommonText>Max: {weather.currentWeather.maxTemperature}° Min: {weather.currentWeather.minTemperature}°</CommonText>
                 <CommonSpacing size={'32px'} />
                 <Row width={'75%'} mainAxisAlignment={'start'}>
-                    <CommonText text={'7-Days Forecasts'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'bold'}/>
+                    <CommonText fontFamily={`"Open Sans", sans-serif`} fontWeight={'bold'}>7-Days Forecasts</CommonText>
                 </Row>
                 <CommonSpacing size={'16px'} />
                 <Row width={'95%'} mainAxisAlignment={'start'}>
@@ -90,11 +90,11 @@ export function DetailPage() {
                             return <>
                                 <CommonContainer width={'20vw'} radius={'50px'} height={'172px'}>
                                     <Column height={'100%'}>
-                                        <ContentText text={`${item.temp}°C`} fontWeight={'500'} />
+                                        <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
                                         <CommonSpacing size={'8px'} />
                                         <WeatherImage size={'50px'} weatherCode={item.weathercode} />
                                         <CommonSpacing size={'8px'} />
-                                        <ContentText text={item.dayOfWeek} fontWeight={'500'} />
+                                        <ContentText fontWeight={'500'}>{item.dayOfWeek}</ContentText>
                                     </Column>
                                 </CommonContainer>
                                 <CommonSpacing size={'8px'} />
@@ -119,11 +119,11 @@ export function DetailPage() {
                         <Row mainAxisAlignment={'start'} width={'90%'} >
                             <SlTarget size={25} color={'#FFFFFF'} />
                             <CommonSpacing size={'8px'} />
-                            <DescriptionText text={'AIR QUALITY'} fontFamily={`"Open Sans", sans-serif`} />
+                            <DescriptionText fontFamily={`"Open Sans", sans-serif`}>AIR QUALITY</DescriptionText>
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'}>
-                            <SubjectText text={`${weather.currentWeather.airQuality} - ${getAirQualityIndex(weather.currentWeather.airQuality)}`} fontsize={'24px'} />
+                            <SubjectText fontsize={'24px'}>{weather.currentWeather.airQuality} - {getAirQualityIndex(weather.currentWeather.airQuality)}</SubjectText>
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'} >
@@ -131,7 +131,7 @@ export function DetailPage() {
                         </Row>
                         <CommonSpacing size={'16px'} />
                         <Row mainAxisAlignment={'space-between'} width={'90%'} onClick={() => {console.log('see more')}}>
-                            <CommonText text={'See more'} fontSize={'18px'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'600'} />
+                            <CommonText fontSize={'18px'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'600'}>See more</CommonText>
                             <FaAngleRight size={'30px'} color={'#FFFFFF'} />
                         </Row>
                     </Column>
@@ -141,26 +141,26 @@ export function DetailPage() {
                     <CommonContainer width={'47%'} radius={'20px'} height={'140px'} borderColor="#F7CBFD" >
                         <Row pt={'10px'}>
                             <GiSun size={40} color={'#FFFFFF'} />
-                            <DescriptionText text={'SUNRISE'} />
+                            <DescriptionText>SUNRISE</DescriptionText>
                         </Row>
                         <Row>
-                            <SubjectText text={`${weather.currentWeather.sunrise}`} />
+                            <SubjectText>{weather.currentWeather.sunrise}</SubjectText>
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row>
-                            <DescriptionText text={`Sunset: ${weather.currentWeather.sunset}`} />
+                            <DescriptionText>Sunset: {weather.currentWeather.sunset}</DescriptionText>
                         </Row>
                     </CommonContainer>
                     <CommonSpacing size={'6%'} />
                     <CommonContainer width={'47%'} radius={'20px'} height={'140px'} borderColor="#F7CBFD" >
                         <Row pt={'10px'}>
                             <GiSun size={40} color={'#FFFFFF'} />
-                            <CommonText text={'UV INDEX'} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`} />
+                            <CommonText fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`}>UV INDEX</CommonText>
                         </Row>
                         <Column>
-                            <SubjectText text={weather.currentWeather.uv} />
+                            <SubjectText>{weather.currentWeather.uv}</SubjectText>
                             <CommonSpacing size={'4px'} />
-                            <ContentText text={getUvIndex(weather.currentWeather.uv)} />
+                            <ContentText>{getUvIndex(weather.currentWeather.uv)}</ContentText>
                         </Column>
                     </CommonContainer>
                 </Row>

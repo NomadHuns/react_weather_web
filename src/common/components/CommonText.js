@@ -10,7 +10,7 @@ const StyledText = styled.div`
     margin: ${props => props.margin || '0'};
 `;
 
-export function CommonText({text, fontSize, fontWeight, letterSpacing, fontColor, lineHeight, fontFamily}) {
+export function CommonText({children, fontSize, fontWeight, letterSpacing, fontColor, lineHeight, fontFamily}) {
     return (
         <StyledText
             fontSize={fontSize}
@@ -20,31 +20,31 @@ export function CommonText({text, fontSize, fontWeight, letterSpacing, fontColor
             lineHeight={lineHeight}
             fontFamily={fontFamily}
         >
-            {text}
+            {children}
         </StyledText>
     );
 }
 
-export function TitleText({text, fontWeight, fontColor, lineHeight}) {
+export function TitleText({children, fontWeight, fontColor, lineHeight}) {
     return (
-        <CommonText text={text} fontSize={'64px'} letterSpacing={'-0.37px'} fontWeight={fontWeight || 'bold'} fontColor={fontColor} lineHeight={lineHeight} />
+        <CommonText fontSize={'64px'} letterSpacing={'-0.37px'} fontWeight={fontWeight || 'bold'} fontColor={fontColor} lineHeight={lineHeight}>{children}</CommonText>
     );
 }
 
-export function SubjectText({text, fontsize = '28px'}) {
+export function SubjectText({children, fontsize = '28px'}) {
     return (
-        <CommonText text={text} fontWeight={'600'} fontSize={fontsize} fontFamily={`"Open Sans", sans-serif`} />
+        <CommonText fontWeight={'600'} fontSize={fontsize} fontFamily={`"Open Sans", sans-serif`}>{children}</CommonText>
     );
 }
 
-export function ContentText({text, fontWeight, fontFamily}) {
+export function ContentText({children, fontWeight, fontFamily}) {
     return (
-        <CommonText text={text} fontWeight={fontWeight} fontSize={'20px'} fontFamily={fontFamily} />
+        <CommonText fontWeight={fontWeight} fontSize={'20px'} fontFamily={fontFamily}>{children}</CommonText>
     );
 }
 
-export function DescriptionText({text, fontWeight}) {
+export function DescriptionText({children, fontWeight}) {
     return (
-        <CommonText text={text} fontWeight={fontWeight} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`} />
+        <CommonText fontWeight={fontWeight} fontSize={'16px'} fontFamily={`"Open Sans", sans-serif`}>{children}</CommonText>
     );
 }

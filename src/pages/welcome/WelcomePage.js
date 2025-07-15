@@ -12,8 +12,8 @@ export function WelcomePage() {
             <MainWrapper>
                 <CommonImage src={"/icons/cloudy.png"} />
                 <CommonSpacing size={'48px'} />
-                <TitleText text={"Weather"} />
-                <TitleText text={"ForeCasts"} fontWeight={'500'} fontColor={'#DDB130'} lineHeight={'1.0'}/>
+                <TitleText>Weather</TitleText>
+                <TitleText fontWeight={'500'} fontColor={'#DDB130'} lineHeight={'1.0'}>ForeCasts</TitleText>
                 <CommonSpacing size={'48px'} />
                 <CommonButton
                     text={'Get Start'}
