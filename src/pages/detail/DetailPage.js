@@ -30,7 +30,7 @@ export function DetailPage() {
                 <Row width={'95%'} mainAxisAlignment={'start'}>
                     <CommonIconButton icon={FaAngleLeft} size="40px" onClick={handlePrev} />
                     {weather.weeklyWeather.slice(index, index + 4).map((item, itemIndex) => (
-                        <CommonContainer width={'20vw'} radius={'50px'} height={'172px'} mr={'8px'}>
+                        <CommonContainer width={'20vw'} radius={'50px'} height={'172px'} mr={itemIndex === 3 ? '0px' : '8px'}>
                             <Column height={'100%'}>
                                 <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
                                 <CommonSpacing size={'8px'} />
