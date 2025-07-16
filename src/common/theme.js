@@ -1,7 +1,7 @@
 export const theme = {
     device: {
-        mobile: `(max-width: 768px)`,
-        tablet: `(max-width: 1024px)`,
+        mobile: 768,
+        tablet: 1024,
     },
     text: {
         default: {

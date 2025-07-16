@@ -8,13 +8,13 @@ import {CommonIconButton} from "../../common/components/CommonButton";
 import {CommonContainer} from "../../common/components/CommonContainer";
 import {SlTarget} from "react-icons/sl";
 import {CommonDivider} from "../../common/components/CommonDivider";
-import {GiHamburgerMenu, GiSun} from "react-icons/gi";
+import {GiSun} from "react-icons/gi";
 import {WeatherImage} from "../../common/components/WeatherImage";
 import {WeatherUtil} from "../../utils/WeatherUtil";
 import {useDetailPage} from "./useDetailPage";
 
 export function DetailPage() {
-    const { weather, city, index, handlePrev, handleNext, navigate } = useDetailPage();
+    const { weather, city, index, handlePrev, handleNext } = useDetailPage();
 
     return (
         <ThemeProvider theme={theme}>
@@ -93,8 +93,6 @@ export function DetailPage() {
                         </Column>
                     </CommonContainer>
                 </Row>
-                <CommonSpacing size={'32px'} />
-                <CommonIconButton icon={GiHamburgerMenu} onClick={() => navigate('/main')} size="60px"/>
             </MainWrapper>
         </ThemeProvider>
     );

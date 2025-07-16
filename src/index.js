@@ -3,20 +3,34 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {WelcomePage} from "./pages/welcome/WelcomePage";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Outlet, Route, Routes} from 'react-router-dom';
 import {MainPage} from "./pages/main/MainPage";
 import {DetailPage} from "./pages/detail/DetailPage";
 import {RecoilRoot} from "recoil";
+import {CommonBottomNavBar} from "./common/components/CommonBottomNavBar";
+
+const Layout = () => {
+    return (
+        <>
+            <main style={{ paddingBottom: '80px' }}>
+                <Outlet />
+            </main>
+            <CommonBottomNavBar />
+        </>
+    );
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <RecoilRoot>
           <Router>
-              <Routes>
+              <Routes >
+                  <Route element={<Layout />}>
+                      <Route path="/main" element={<MainPage />} />
+                      <Route path="/detail" element={<DetailPage />} />
+                  </Route>
                   <Route path="/" element={<WelcomePage />} />
-                  <Route path="/main" element={<MainPage />} />
-                  <Route path="/detail" element={<DetailPage />} />
               </Routes>
           </Router>
       </RecoilRoot>
