@@ -9,7 +9,7 @@ import {CommonContainer} from "../../common/components/CommonContainer";
 import {SlTarget} from "react-icons/sl";
 import {CommonDivider} from "../../common/components/CommonDivider";
 import {GiSun} from "react-icons/gi";
-import {WeatherImage} from "../../common/components/WeatherImage";
+import {WeatherImage} from "../../components/WeatherImage";
 import {WeatherUtil} from "../../utils/WeatherUtil";
 import {useDetailPage} from "./useDetailPage";
 

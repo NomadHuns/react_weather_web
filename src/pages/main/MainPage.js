@@ -4,7 +4,7 @@ import {CommonText, ContentText} from "../../common/components/CommonText";
 import {FullWidthContainer} from "../../common/components/CommonContainer";
 import {DefaultDivider} from "../../common/components/CommonDivider";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
-import {WeatherImage} from "../../common/components/WeatherImage";
+import {WeatherImage} from "../../components/WeatherImage";
 import {TimeUtil} from "../../common/utils/TimeUtil";
 import {useMainPage} from "./useMainPage";
 

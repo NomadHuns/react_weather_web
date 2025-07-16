@@ -1,4 +1,4 @@
-import {CommonImage} from "./CommonImage";
+import {CommonImage} from "../common/components/CommonImage";
 
 function interpretWeatherCode(code) {
     const map = {
