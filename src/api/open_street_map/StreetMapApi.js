@@ -1,4 +1,4 @@
-import {baseGetAPI} from "../BaseAPI";
+import {baseGetAPI} from "../../common/api/BaseAPI";
 
 async function baseStreetMapApi(params) {
     return await baseGetAPI('https', 'nominatim.openstreetmap.org', '/reverse', params);

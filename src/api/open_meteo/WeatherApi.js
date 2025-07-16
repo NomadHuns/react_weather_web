@@ -1,4 +1,4 @@
-import {baseGetAPI} from "../BaseAPI";
+import {baseGetAPI} from "../../common/api/BaseAPI";
 
 async function baseWeatherAPI(params) {
     return await baseGetAPI('https', 'api.open-meteo.com', '/v1/forecast', params);

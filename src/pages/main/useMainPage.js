@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import {WeatherAtom} from "../../common/atoms/WeatherAtom";
-import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {getTodayWeatherByLocation, getWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
-import {getNextFourHoursWeather} from "../../common/utils/WeatherUtil";
+import {WeatherAtom} from "../../atoms/WeatherAtom";
+import {LocationAtom} from "../../atoms/LocationAtom";
+import {getTodayWeatherByLocation, getWeatherByLocation} from "../../api/open_meteo/WeatherApi";
+import {WeatherUtil} from "../../utils/WeatherUtil";
 
 export function useMainPage() {
     const navigate = useNavigate();
@@ -54,7 +54,7 @@ export function useMainPage() {
                     getWeatherByLocation(location.lat, location.lng)
                 ]);
 
-                const nextFourHours = getNextFourHoursWeather(hourlyData);
+                const nextFourHours = WeatherUtil.getNextFourHoursWeather(hourlyData);
 
                 setWeather(prev => ({
                     ...prev,

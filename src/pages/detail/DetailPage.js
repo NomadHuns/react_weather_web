@@ -10,7 +10,7 @@ import {SlTarget} from "react-icons/sl";
 import {CommonDivider} from "../../common/components/CommonDivider";
 import {GiHamburgerMenu, GiSun} from "react-icons/gi";
 import {WeatherImage} from "../../common/components/WeatherImage";
-import {getAirQualityIndex, getUvIndex} from "../../common/utils/WeatherUtil";
+import {WeatherUtil} from "../../utils/WeatherUtil";
 import {useDetailPage} from "./useDetailPage";
 
 export function DetailPage() {
@@ -52,7 +52,7 @@ export function DetailPage() {
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'}>
-                            <SubjectText fontsize={'24px'}>{weather.currentWeather.airQuality} - {getAirQualityIndex(weather.currentWeather.airQuality)}</SubjectText>
+                            <SubjectText fontsize={'24px'}>{weather.currentWeather.airQuality} - {WeatherUtil.getAirQualityIndex(weather.currentWeather.airQuality)}</SubjectText>
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'} >
@@ -89,7 +89,7 @@ export function DetailPage() {
                         <Column>
                             <SubjectText>{weather.currentWeather.uv}</SubjectText>
                             <CommonSpacing size={'4px'} />
-                            <ContentText>{getUvIndex(weather.currentWeather.uv)}</ContentText>
+                            <ContentText>{WeatherUtil.getUvIndex(weather.currentWeather.uv)}</ContentText>
                         </Column>
                     </CommonContainer>
                 </Row>

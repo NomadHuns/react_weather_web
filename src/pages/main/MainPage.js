@@ -10,7 +10,7 @@ import {CommonIconButton} from "../../common/components/CommonButton";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {MdLocationOn} from "react-icons/md";
 import {WeatherImage} from "../../common/components/WeatherImage";
-import {getFormattedToday} from "../../common/utils/TimeUtil";
+import {TimeUtil} from "../../common/utils/TimeUtil";
 import {useMainPage} from "./useMainPage";
 
 export function MainPage() {
@@ -29,7 +29,7 @@ export function MainPage() {
                 <FullWidthContainer height={'230px'}>
                     <Row mainAxisAlignment={'space-between'} px="35px" py="15px">
                         <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>Today</ContentText>
-                        <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>{getFormattedToday()}</ContentText>
+                        <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>{TimeUtil.getFormattedToday()}</ContentText>
                     </Row>
                     <DefaultDivider />
                     <Row mainAxisAlignment={'space-between'} pt="20px">

@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from "recoil";
 import {useEffect, useState} from "react";
-import {getWeeklyWeatherByLocation} from "../../common/api/open_meteo/WeatherApi";
-import {getAirQuality} from "../../common/api/open_meteo/AirQualityApi";
-import {getCountryAndCity} from "../../common/api/open_street_map/StreetMapApi";
-import {getMinAndMaxTemperatureToday, getWeeklyWeather} from "../../common/utils/WeatherUtil";
-import {WeatherAtom} from "../../common/atoms/WeatherAtom";
-import {LocationAtom} from "../../common/atoms/LocationAtom";
-import {formatToAmPmTime, getCurrentHour24} from "../../common/utils/TimeUtil"; // 경로 수정
+import {getWeeklyWeatherByLocation} from "../../api/open_meteo/WeatherApi";
+import {getAirQuality} from "../../api/open_meteo/AirQualityApi";
+import {getCountryAndCity} from "../../api/open_street_map/StreetMapApi";
+import {WeatherUtil} from "../../utils/WeatherUtil";
+import {WeatherAtom} from "../../atoms/WeatherAtom";
+import {LocationAtom} from "../../atoms/LocationAtom";
+import {TimeUtil} from "../../common/utils/TimeUtil"; // 경로 수정
 
 export function useDetailPage() {
     const navigate = useNavigate();
@@ -33,8 +33,8 @@ export function useDetailPage() {
                 ]);
 
                 // 날씨 정보 가공 및 상태 업데이트
-                const weeklyWeather = getWeeklyWeather(weatherData);
-                const minMaxToday = getMinAndMaxTemperatureToday(weatherData);
+                const weeklyWeather = WeatherUtil.getWeeklyWeather(weatherData);
+                const minMaxToday = WeatherUtil.getMinAndMaxTemperatureToday(weatherData);
 
                 setWeather((prev) => ({
                     ...prev,
@@ -43,10 +43,10 @@ export function useDetailPage() {
                         ...prev.currentWeather,
                         minTemperature: minMaxToday.minTemperature,
                         maxTemperature: minMaxToday.maxTemperature,
-                        sunrise: formatToAmPmTime(weatherData.daily.sunrise[0], ':'),
-                        sunset: formatToAmPmTime(weatherData.daily.sunset[0], '.'),
+                        sunrise: TimeUtil.formatToAmPmTime(weatherData.daily.sunrise[0], ':'),
+                        sunset: TimeUtil.formatToAmPmTime(weatherData.daily.sunset[0], '.'),
                         uv: weatherData.daily.uv_index_max[0],
-                        airQuality: airData.hourly.european_aqi[getCurrentHour24()],
+                        airQuality: airData.hourly.european_aqi[TimeUtil.getCurrentHour24()],
                     },
                 }));
 

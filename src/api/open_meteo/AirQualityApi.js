@@ -1,4 +1,4 @@
-import {baseGetAPI} from "../BaseAPI";
+import {baseGetAPI} from "../../common/api/BaseAPI";
 
 async function baseAirQualityAPI(params) {
     return await baseGetAPI('https', 'air-quality-api.open-meteo.com', '/v1/air-quality', params);
