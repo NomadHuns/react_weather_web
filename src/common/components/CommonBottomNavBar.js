@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {BottomNavigation, BottomNavigationAction, Box} from '@mui/material';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {MdLocationOn} from "react-icons/md";
-import {GiHamburgerMenu} from "react-icons/gi";
+import {theme} from "../theme";
 
-export function CommonBottomNavBar() {
+export function CommonBottomNavBar({ backgroundColor, iconColor, selectedIconColor, iconSize, actions }) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -29,37 +28,24 @@ export function CommonBottomNavBar() {
                 value={value}
                 onChange={handleChange}
                 sx={{
-                    backgroundColor: 'transparent',
+                    backgroundColor: backgroundColor ?? theme.bottomNavBar.backgroundColor,
                     '& .MuiBottomNavigationAction-root': {
-                        color: '#FFFFFF' // 원하는 비활성 색상
+                        color: iconColor ?? theme.bottomNavBar.iconColor,
                     },
-                    '& .Mui-selected': {
-                        color: 'tomato' // 테마의 기본 색상을 사용하는 것을 권장
+                    '& .MuiBottomNavigationAction-root.Mui-selected': {
+                        color: selectedIconColor ?? theme.bottomNavBar.selectedIconColor,
                     },
-                    // 아이콘만 색상을 변경하고 싶을 경우
-                    // '& .Mui-selected .MuiSvgIcon-root': {
-                    //   color: 'tomato'
-                    // }
+                    '& svg': {
+                        fontSize: iconSize ?? theme.bottomNavBar.iconSize,
+                    }
                 }}
             >
-                <BottomNavigationAction
-                    value="/main"
-                    icon={<MdLocationOn size={'40px'}/>}
-                    // sx={{
-                    //     '&.Mui-selected': {
-                    //         color: 'tomato' // 원하는 선택 색상을 지정
-                    //     }
-                    // }}
-                />
-                <BottomNavigationAction
-                    value="/detail"
-                    icon={<GiHamburgerMenu size={'40px'}/>}
-                    // sx={{
-                    //     '&.Mui-selected': {
-                    //         color: 'tomato' // 원하는 선택 색상을 지정
-                    //     }
-                    // }}
-                />
+                {actions.map((action =>
+                    <BottomNavigationAction
+                        value={action.path}
+                        icon={action.icon}
+                    />
+                ))}
             </BottomNavigation>
         </Box>
     );

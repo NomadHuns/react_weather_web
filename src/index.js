@@ -8,6 +8,8 @@ import {MainPage} from "./pages/main/MainPage";
 import {DetailPage} from "./pages/detail/DetailPage";
 import {RecoilRoot} from "recoil";
 import {CommonBottomNavBar} from "./common/components/CommonBottomNavBar";
+import {MdLocationOn} from "react-icons/md";
+import {GiHamburgerMenu} from "react-icons/gi";
 
 const Layout = () => {
     return (
@@ -15,7 +17,18 @@ const Layout = () => {
             <main style={{ paddingBottom: '80px' }}>
                 <Outlet />
             </main>
-            <CommonBottomNavBar />
+            <CommonBottomNavBar
+                actions={[
+                    {
+                        path: "/main",
+                        icon: <MdLocationOn/>,
+                    },
+                    {
+                        path: "/detail",
+                        icon: <GiHamburgerMenu/>,
+                    },
+                ]}
+            />
         </>
     );
 };
@@ -25,11 +38,13 @@ root.render(
   <React.StrictMode>
       <RecoilRoot>
           <Router>
-              <Routes >
+              <Routes>
+                  {/* 바텀 네비게이션바 적용 페이지 */}
                   <Route element={<Layout />}>
                       <Route path="/main" element={<MainPage />} />
                       <Route path="/detail" element={<DetailPage />} />
                   </Route>
+                  {/* 바텀 네비게이션바 미적용 페이지 */}
                   <Route path="/" element={<WelcomePage />} />
               </Routes>
           </Router>

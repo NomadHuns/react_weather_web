@@ -3,6 +3,12 @@ export const theme = {
         mobile: 768,
         tablet: 1024,
     },
+    bottomNavBar: {
+        backgroundColor: 'transparent',
+        iconColor: '#FFFFFF',
+        selectedIconColor: 'tomato',
+        iconSize: '40px',
+    },
     text: {
         default: {
             fontSize: '24px',
