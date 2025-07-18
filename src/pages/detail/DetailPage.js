@@ -1,6 +1,6 @@
 import {theme} from "../../common/theme";
 import {ThemeProvider} from "styled-components";
-import {Column, MainWrapper, Row} from "../../common/components/CommonWrapper";
+import {Column, Row} from "../../common/components/CommonWrapper";
 import {CommonText, ContentText, DescriptionText, SubjectText} from "../../common/components/CommonText";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {FaAngleLeft, FaAngleRight} from "react-icons/fa6";
@@ -12,6 +12,7 @@ import {GiSun} from "react-icons/gi";
 import {WeatherImage} from "../../components/WeatherImage";
 import {WeatherUtil} from "../../utils/WeatherUtil";
 import {useDetailPage} from "./useDetailPage";
+import {MainWrapper} from "../../components/MainWrapper";
 
 export function DetailPage() {
     const { weather, city, index, handlePrev, handleNext } = useDetailPage();

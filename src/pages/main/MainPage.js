@@ -1,4 +1,4 @@
-import {Column, MainWrapper, Row} from "../../common/components/CommonWrapper";
+import {Column, Row} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
 import {CommonText, ContentText} from "../../common/components/CommonText";
 import {FullWidthContainer} from "../../common/components/CommonContainer";
@@ -7,6 +7,7 @@ import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {WeatherImage} from "../../components/WeatherImage";
 import {TimeUtil} from "../../common/utils/TimeUtil";
 import {useMainPage} from "./useMainPage";
+import {MainWrapper} from "../../components/MainWrapper";
 
 export function MainPage() {
     // 커스텀 훅을 호출하여 로직의 결과물만 받아서 사용

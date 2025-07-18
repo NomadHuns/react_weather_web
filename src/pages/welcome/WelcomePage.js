@@ -3,9 +3,9 @@ import {theme} from '../../common/theme';
 import {TitleText} from "../../common/components/CommonText";
 import {CommonSpacing} from "../../common/components/CommonSpacing";
 import {CommonButton} from "../../common/components/CommonButton";
-import {MainWrapper} from "../../common/components/CommonWrapper";
 import {CommonImage} from "../../common/components/CommonImage";
 import {useWelcomePage} from "./useWelcomePage";
+import {MainWrapper} from "../../components/MainWrapper";
 
 export function WelcomePage() {
     const { navigate } = useWelcomePage();

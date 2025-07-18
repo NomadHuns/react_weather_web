@@ -38,9 +38,9 @@ export function CommonWrapper({ children, direction, height, justifyContent, bac
     </Wrapper>;
 }
 
-export function MainWrapper({children}) {
-    return <CommonWrapper height={'100vh'}>{children}</CommonWrapper>
-}
+// export function MainWrapper({children}) {
+//     return <CommonWrapper height={'100vh'}>{children}</CommonWrapper>
+// }
 
 export function Column({children, mainAxisAlignment, crossAxisAlignment, width, ...rest}) {
     return <CommonWrapper
