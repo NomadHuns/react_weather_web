@@ -30,7 +30,10 @@ export function DetailPage() {
                 <Row width={'95%'} mainAxisAlignment={'start'}>
                     <CommonIconButton icon={FaAngleLeft} size="40px" onClick={handlePrev} />
                     {weather.weeklyWeather.slice(index, index + 4).map((item, itemIndex) => (
-                        <CommonContainer width={'20vw'} radius={'50px'} height={'172px'} mr={itemIndex === 3 ? '0px' : '8px'}>
+                        <CommonContainer
+                            width={'20vw'} radius={'50px'} height={'172px'}
+                            mr={itemIndex === 3 ? '0px' : '8px'}
+                        >
                             <Column height={'100%'}>
                                 <ContentText fontWeight={'500'}>{item.temp}°C</ContentText>
                                 <CommonSpacing size={'8px'} />
@@ -52,7 +55,9 @@ export function DetailPage() {
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'}>
-                            <SubjectText fontsize={'24px'}>{weather.currentWeather.airQuality} - {WeatherUtil.getAirQualityIndex(weather.currentWeather.airQuality)}</SubjectText>
+                            <SubjectText fontsize={'24px'}>
+                                {weather.currentWeather.airQuality} - {WeatherUtil.getAirQualityIndex(weather.currentWeather.airQuality)}
+                            </SubjectText>
                         </Row>
                         <CommonSpacing size={'8px'} />
                         <Row mainAxisAlignment={'start'} width={'90%'} >
@@ -60,7 +65,9 @@ export function DetailPage() {
                         </Row>
                         <CommonSpacing size={'16px'} />
                         <Row mainAxisAlignment={'space-between'} width={'90%'} onClick={() => {console.log('see more')}}>
-                            <CommonText fontSize={'18px'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'600'}>See more</CommonText>
+                            <CommonText fontSize={'18px'} fontFamily={`"Open Sans", sans-serif`} fontWeight={'600'}>
+                                See more
+                            </CommonText>
                             <FaAngleRight size={'30px'} color={'#FFFFFF'} />
                         </Row>
                     </Column>

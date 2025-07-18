@@ -28,9 +28,13 @@ const Container = styled.div`
 `;
 
 export function CommonContainer({children, width, height, radius, borderColor, ...rest}) {
-    return <Container width={width} height={height} radius={radius} borderColor={borderColor} {...rest}>{children}</Container>
+    return <Container width={width} height={height} radius={radius} borderColor={borderColor} {...rest}>
+        {children}
+    </Container>
 }
 
 export function FullWidthContainer({children, height, radius, borderColor, ...rest}) {
-    return <Container width={'100vw'} height={height} radius={radius} borderColor={borderColor} {...rest}>{children}</Container>
+    return <Container width={'100vw'} height={height} radius={radius} borderColor={borderColor} {...rest}>
+        {children}
+    </Container>
 }

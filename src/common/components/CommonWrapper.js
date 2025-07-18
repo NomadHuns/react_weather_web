@@ -27,7 +27,15 @@ const Wrapper = styled.div`
 `;
 
 export function CommonWrapper({ children, direction, height, justifyContent, backgroundColor, ...rest }) {
-    return <Wrapper direction={direction} height={height} justifyContent={justifyContent} backgroundColor={backgroundColor} {...rest} >{children}</Wrapper>;
+    return <Wrapper
+        direction={direction}
+        height={height}
+        justifyContent={justifyContent}
+        backgroundColor={backgroundColor}
+        {...rest}
+    >
+        {children}
+    </Wrapper>;
 }
 
 export function MainWrapper({children}) {

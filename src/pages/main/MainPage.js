@@ -16,14 +16,18 @@ export function MainPage() {
         <MainWrapper>
             <CommonSpacing size={'16px'} />
             <WeatherImage size={'150px'} weatherCode={weather.currentWeather.weathercode} />
-            <CommonText fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}>{weather.currentWeather.temperature}°C</CommonText>
+            <CommonText fontWeight={'500'} letterSpacing={'0.47px'} fontSize={'64px'}>
+                {weather.currentWeather.temperature}°C
+            </CommonText>
             <CommonText lineHeight={'1.0'}>Precipitations</CommonText>
             <CommonText text={''}>Max: 24° Min: 18°</CommonText>
             <CommonImage src={"/images/house.png"} size={'340px'} />
             <FullWidthContainer height={'230px'}>
                 <Row mainAxisAlignment={'space-between'} px="35px" py="15px">
                     <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>Today</ContentText>
-                    <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>{TimeUtil.getFormattedToday()}</ContentText>
+                    <ContentText fontWeight={'600'} fontFamily={`"Open Sans", sans-serif`}>
+                        {TimeUtil.getFormattedToday()}
+                    </ContentText>
                 </Row>
                 <DefaultDivider />
                 <Row mainAxisAlignment={'space-between'} pt="20px">
