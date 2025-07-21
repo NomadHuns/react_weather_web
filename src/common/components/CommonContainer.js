@@ -34,7 +34,7 @@ export function CommonContainer({children, width, height, radius, borderColor, .
 }
 
 export function FullWidthContainer({children, height, radius, borderColor, ...rest}) {
-    return <Container width={'100vw'} height={height} radius={radius} borderColor={borderColor} {...rest}>
+    return <Container width={'100%'} height={height} radius={radius} borderColor={borderColor} {...rest}>
         {children}
     </Container>
 }
